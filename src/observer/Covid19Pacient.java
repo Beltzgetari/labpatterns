@@ -1,4 +1,4 @@
-package domain;
+package observer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
 
+import domain.Symptom;
 import factory.SymptonFactory;
 import iterator.Covid19PacientIterator;
 
-public class Covid19Pacient {
+public class Covid19Pacient extends Observable {
 	private String  name; 
 	private int age;
 	private Map<Symptom,Integer> symptoms=new HashMap<Symptom,Integer>();
@@ -66,6 +67,8 @@ public class Covid19Pacient {
 			s=symptonFactory.createSymptom(symptom); 
 			symptoms.put(s,w);		
 		}
+		this.setChanged();
+		this.notifyObservers();
 		return s;
 	}
 
@@ -73,6 +76,8 @@ public class Covid19Pacient {
 		Symptom s=getSymptomByName(symptomName);
 		System.out.println("Simptom to remove: "+s);
 		if (s!=null) symptoms.remove(s);
+		this.setChanged();
+		this.notifyObservers();
 		return s;
 	}
 	
