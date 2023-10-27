@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import domain.Covid19Pacient;
 import domain.Symptom;
 
 import javax.swing.JLabel;
