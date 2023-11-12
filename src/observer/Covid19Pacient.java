@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import domain.DigestiveSymptom;
@@ -26,7 +27,7 @@ public class Covid19Pacient extends Observable {
 		this.age = years;
 	}
 	
-	public String getName() {
+	public String getName() { 	
 		return name;
 	}
 	public void setName(String name) {

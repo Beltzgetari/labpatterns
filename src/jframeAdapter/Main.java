@@ -20,6 +20,7 @@ import factory.SymptonFactory;
 			p.addSymptom(new Symptom("s5", 10, 10), 5);
 			
 			
+			
 			Covid19PacientModelAdapter pacientModelAdapter=new Covid19PacientModelAdapter(p);        
 			
 			JFrame j=new JFrame();

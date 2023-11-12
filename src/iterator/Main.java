@@ -1,11 +1,14 @@
 package iterator;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import adapter.Sorting;
 import domain.Covid19Pacient;
 import domain.Symptom;
 import factory.SymptonFactory;
@@ -16,17 +19,33 @@ import factory.SymptonFactory;
 			
 			SymptonFactory sf = new SymptonFactory();
 			Covid19Pacient p=new Covid19Pacient("Ane", 29, sf);
-			p.addSymptom(new Symptom("s1", 10, 10), 1);
-			p.addSymptom(new Symptom("s2", 10, 10), 2);
-			p.addSymptom(new Symptom("s3", 10, 10), 3);
-			p.addSymptom(new Symptom("s4", 10, 10), 4);
-			p.addSymptom(new Symptom("s5", 10, 10), 5);
+			p.addSymptom(new Symptom("a", 10, 5), 1);
+			p.addSymptom(new Symptom("b", 10, 10), 2);
+			p.addSymptom(new Symptom("c", 10, 6), 3);
+			p.addSymptom(new Symptom("d", 10, 2), 4);
+			p.addSymptom(new Symptom("e", 10, 4), 5);
 			
-			Iterator i=p.iterator();
-			while(i.hasNext())
-				System.out.println(i.next());
+			
+			 ArrayList<Symptom> pp =  new ArrayList<>(p.getSymptoms());
+		     Sorting.sortedIterator(new Covid19PacientIterator(pp), new SymptomNameComparator());
 
+		        // Print symptoms
+		        printSymptoms(p);
+
+		        // Sort by severityIndex
+		        Sorting.sortedIterator(new Covid19PacientIterator(pp), new SeverityIndexComparator());
+
+		        // Print symptoms
+		        printSymptoms(p);
+		    }
+
+		    private static void printSymptoms(Covid19Pacient pacient) {
+		        System.out.println("Symptoms for " + pacient.getName() + ":");
+		        Iterator<Symptom> iterator = pacient.getSymptoms().iterator();
+		        while (iterator.hasNext()) {
+		            Symptom symptom = iterator.next();
+		            System.out.println(symptom.getName() + " - Severity: " + symptom.getSeverityIndex());
+		        }
+		        System.out.println();
+		    }
 		}
-
-	}
-

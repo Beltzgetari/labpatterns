@@ -13,7 +13,7 @@ public class Covid19PacientModelAdapter extends AbstractTableModel {
 
     private final List<Symptom> symptoms;
     private Covid19Pacient pacient;
-    private String[] colNames = new String[] {"symptom", "severity"};
+    private String[] colNames = new String[] {"Symptom", "Weight"};
     
     
     public Covid19PacientModelAdapter(Covid19Pacient p) {
@@ -40,7 +40,7 @@ public class Covid19PacientModelAdapter extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        switch(columnIndex) {
-            case 0: return ((Object) symptoms.get(rowIndex));
+            case 0: return ((Object) symptoms.get(rowIndex).getName());
             case 1: return ((Object) pacient.getWeight(symptoms.get(rowIndex)));
             	
             

@@ -1,6 +1,8 @@
 package adapter;
 
-public interface InvertedIterator {
+import java.util.Iterator;
+
+public interface InvertedIterator extends Iterator {
 	// return the actual element and go to the previous
 	public Object previous();
 
